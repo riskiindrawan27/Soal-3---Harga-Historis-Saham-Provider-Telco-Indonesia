@@ -1,0 +1,45 @@
+import pandas as pd 
+import numpy as np 
+import matplotlib.pyplot as plt
+
+
+df = pd.read_csv(
+    'EXCL.JK.csv',
+    parse_dates=['Date'],
+    index_col='Date'
+)
+
+df1 = pd.read_csv(
+    'FREN.JK.csv',
+    parse_dates=['Date'],
+    index_col='Date'
+)
+
+df2 = pd.read_csv(
+    'ISAT.JK.csv',
+    parse_dates=['Date'],
+    index_col='Date'
+)
+
+df3 = pd.read_csv(
+    'TLKM.JK.csv',
+    parse_dates=['Date'],
+    index_col='Date'
+)
+# print(df.head())
+# print(df1.head())
+# print(df2.head())
+# print(df3.head())
+
+plt.title('Harga Historis Saham Provider Telco Indonesia')
+plt.plot(
+     df.index, df['Close'], 'g-',
+     df1.index, df1['Close'], 'r-',
+     df2.index, df2['Close'], 'b-',
+     df3.index, df3['Close'], 'y-',
+)
+plt.xlabel('Tanggal')
+plt.ylabel('Rupiah(IDR)')
+plt.xticks(rotation=65)
+plt.grid(True)
+plt.show()
