@@ -30,16 +30,17 @@ df3 = pd.read_csv(
 # print(df1.head())
 # print(df2.head())
 # print(df3.head())
-
+plt.figure('Harga Historis Saham Telco', figsize=(15,6))
 plt.title('Harga Historis Saham Provider Telco Indonesia')
 plt.plot(
-     df.index, df['Close'], 'g-',
-     df1.index, df1['Close'], 'r-',
+     df.index, df['Close'], 'r-',
+     df1.index, df1['Close'], 'g-',
      df2.index, df2['Close'], 'b-',
-     df3.index, df3['Close'], 'y-',
+     df3.index, df3['Close'], 'c-',
 )
 plt.xlabel('Tanggal')
 plt.ylabel('Rupiah(IDR)')
 plt.xticks(rotation=65)
 plt.grid(True)
+xiata Tbk','PT Smartfren Telecom Tbk','PT Indosat Tbk','PT Telekomunikasi Tbk'], loc='lower left')
 plt.show()
