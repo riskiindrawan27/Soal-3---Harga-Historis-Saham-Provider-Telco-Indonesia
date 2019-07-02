@@ -3,43 +3,30 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-df = pd.read_csv(
-    'EXCL.JK.csv',
-    parse_dates=['Date'],
-    index_col='Date'
-)
+df1 = pd.read_csv('EXCL.JK.csv',na_values = '-', parse_dates=['Date'])
+df1_april = df1[(df1['Date'] > '2019-03-29') & (df1['Date'] < '2019-05-01')]
+df2 = pd.read_csv('FREN.JK.csv',na_values = '-', parse_dates=['Date'])
+df2_april = df2[(df2['Date'] > '2019-03-29') & (df2['Date'] < '2019-05-01')]
+df3 = pd.read_csv('ISAT.JK.csv',na_values = '-', parse_dates=['Date'])
+df3_april = df3[(df3['Date'] > '2019-03-29') & (df3['Date'] < '2019-05-01')]
+df4 = pd.read_csv('TLKM.JK.csv',na_values = '-', parse_dates=['Date'])
+df4_april = df4[(df4['Date'] > '2019-03-29') & (df4['Date'] < '2019-05-01')]
 
-df1 = pd.read_csv(
-    'FREN.JK.csv',
-    parse_dates=['Date'],
-    index_col='Date'
-)
+print(df1_april.head())
+print(df2_april.head())
+print(df3_april.head())
+print(df4_april.head())
 
-df2 = pd.read_csv(
-    'ISAT.JK.csv',
-    parse_dates=['Date'],
-    index_col='Date'
-)
-
-df3 = pd.read_csv(
-    'TLKM.JK.csv',
-    parse_dates=['Date'],
-    index_col='Date'
-)
-# print(df.head())
-# print(df1.head())
-# print(df2.head())
-# print(df3.head())
+plt.figure('Harga Saham Telco', figsize=(15,6))
+plt.plot(df1_april['Date'], df1_april['Close'], color = 'red')
+plt.plot(df2_april['Date'], df2_april['Close'], color = 'green')
+plt.plot(df3_april['Date'], df3_april['Close'], color = 'cyan')
+plt.plot(df4_april['Date'], df4_april['Close'], color = 'blue')
 
 plt.title('Harga Historis Saham Provider Telco Indonesia(April 2019)')
-plt.plot(
-     df['2019-04']['Close'].mean(), 'g-',
-     df1['2019-04']['Close'].mean(), 'b-',
-     df2['2019-04']['Close'].mean(), 'r-',
-     df3['2019-04']['Close'].mean(), 'y-',
-)
 plt.xlabel('Tanggal')
 plt.ylabel('Rupiah(IDR)')
 plt.xticks(rotation=65)
 plt.grid(True)
+plt.legend(['PT XL Tbk', 'PT Smartfren Tbk', 'PT Indosat Tbk', 'PT Telekomunikasi Tbk'], loc='lower left')
 plt.show()
